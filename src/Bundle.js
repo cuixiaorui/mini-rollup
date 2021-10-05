@@ -1,5 +1,5 @@
 const fs = require("fs");
-const path = require('path');
+const path = require("path");
 const MagicString = require("magic-string");
 const { Module } = require("./Module");
 class Bundle {
@@ -42,6 +42,14 @@ class Bundle {
     const ms = new MagicString.Bundle();
     this._statements.forEach((statement) => {
       const source = statement._source.clone();
+      // 在这里可以对 node 做各种处理
+      // 如果是 export 的话 那么需要把 export 给删除掉
+      if (/^Export/.test(statement.type)) {
+        if (statement.type === "ExportNamedDeclaration") {
+          source.remove(statement.start, statement.declaration.start);
+        }
+      }
+
       ms.addSource({
         content: source,
         separator: "\n",
