@@ -5,12 +5,11 @@
 ## Tasking
 
 - [x] 如何解析 import 的文件
-思考一下的话，其实我们的目标就是获取其他文件的所有的 statements， 添加到总的 statements 里面即可，因为这样就可以输出了
+      思考一下的话，其实我们的目标就是获取其他文件的所有的 statements， 添加到总的 statements 里面即可，因为这样就可以输出了
   1.  获取到所有 import 的语句
   2. 继续调用 fetchModule
   3. 把生成的 statements 添加到整体的数组内
   4. 最后在 generate 阶段对 statement 做处理，比如可以在这个阶段删除 export
-
 
 ## 理论
 
